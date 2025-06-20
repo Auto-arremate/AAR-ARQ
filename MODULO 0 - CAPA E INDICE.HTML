@@ -422,6 +422,40 @@
              </div>
         </section>
 
+        <!-- Ranking Section -->
+        <section id="ranking-section" class="hidden ranking-section">
+            <div id="rankingContainer" class="container mx-auto my-8"></div>
+        </section>
+
+        <!-- Feedback Modal -->
+        <div id="feedbackModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <form id="feedbackForm" class="bg-white p-4 rounded shadow-lg" data-module="">
+                <label class="block mb-2">Avaliação:
+                    <select name="rating" class="border p-1">
+                        <option value="5">5 - Excelente</option>
+                        <option value="4">4 - Bom</option>
+                        <option value="3">3 - Regular</option>
+                        <option value="2">2 - Ruim</option>
+                        <option value="1">1 - Péssimo</option>
+                    </select>
+                </label>
+                <label class="block mb-2">Comentários:
+                    <textarea name="comments" class="border w-full p-1"></textarea>
+                </label>
+                <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Enviar</button>
+            </form>
+        </div>
+
+        <!-- Share Button -->
+        <button id="shareCertificateBtn" class="hidden fixed bottom-4 right-4 bg-blue-600 text-white rounded-full p-3 shadow-lg">
+            <i class="fas fa-share"></i>
+        </button>
+
+        <!-- Reminder Notification -->
+        <div id="reminder-notification" class="hidden fixed top-5 right-5 bg-blue-500 text-white py-2 px-4 rounded shadow-lg">
+            <span id="reminder-text">Você tem módulos pendentes!</span>
+        </div>
+
     </main>
 
     <!-- Theme Toggle Button -->
@@ -630,6 +664,96 @@
                 });
             } else if (readPageBtn) {
                 readPageBtn.style.display = 'none'; // Hide button if TTS not supported
+            }
+
+            // --- Sistema de Notificações / Lembretes ---
+            function scheduleReminder() {
+                if (!('Notification' in window)) return;
+                if (Notification.permission !== 'granted') {
+                    Notification.requestPermission();
+                }
+                setInterval(() => {
+                    const last = localStorage.getItem('lastInteraction');
+                    const minutesInactive = last ? Math.floor((Date.now() - parseInt(last)) / 60000) : 0;
+                    if (minutesInactive >= 10) {
+                        new Notification('Lembrete', { body: 'Volte e conclua o próximo módulo!' });
+                    }
+                }, 60000);
+            }
+            document.addEventListener('click', () => localStorage.setItem('lastInteraction', Date.now().toString()));
+            scheduleReminder();
+
+            // --- Ranking / Placar ---
+            function updateRanking(name, score) {
+                let ranking = JSON.parse(localStorage.getItem('ranking') || '[]');
+                ranking.push({ name, score });
+                ranking.sort((a, b) => b.score - a.score);
+                ranking = ranking.slice(0, 10);
+                localStorage.setItem('ranking', JSON.stringify(ranking));
+                renderRanking();
+            }
+
+            function renderRanking() {
+                const container = document.getElementById('rankingContainer');
+                if (!container) return;
+                const ranking = JSON.parse(localStorage.getItem('ranking') || '[]');
+                container.innerHTML = '<h2>Ranking</h2>' +
+                    '<ol>' + ranking.map(r => `<li>${r.name} - ${r.score}</li>`).join('') + '</ol>';
+            }
+            renderRanking();
+
+            // --- Salvamento de Progresso em Nuvem (Placeholder) ---
+            async function saveProgressToCloud(progress) {
+                try {
+                    await fetch('https://example.com/api/progress', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(progress)
+                    });
+                } catch (err) {
+                    console.warn('Falha ao salvar na nuvem:', err);
+                }
+            }
+
+            // --- Módulo de Feedback ---
+            const feedbackForm = document.getElementById('feedbackForm');
+            const feedbackModal = document.getElementById('feedbackModal');
+            function showFeedback(module) {
+                if (!feedbackModal) return;
+                feedbackForm.dataset.module = module;
+                feedbackModal.classList.remove('hidden');
+            }
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const data = {
+                        module: feedbackForm.dataset.module,
+                        rating: feedbackForm.querySelector('[name=rating]').value,
+                        comments: feedbackForm.querySelector('[name=comments]').value
+                    };
+                    let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+                    feedbacks.push(data);
+                    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+                    feedbackForm.reset();
+                    feedbackModal.classList.add('hidden');
+                });
+            }
+
+            // --- Integração com Redes Sociais ---
+            const shareBtn = document.getElementById('shareCertificateBtn');
+            if (shareBtn && navigator.share) {
+                shareBtn.classList.remove('hidden');
+                shareBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.share({
+                            title: 'Meu Certificado',
+                            text: 'Concluí a trilha Auto Arremate & Arremaq!',
+                            url: window.location.href
+                        });
+                    } catch (e) {
+                        console.error('Erro ao compartilhar', e);
+                    }
+                });
             }
         });
     </script>
