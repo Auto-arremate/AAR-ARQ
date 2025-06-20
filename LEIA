@@ -1,0 +1,161 @@
+🚦 PROMPT SUPREMO DE INTEGRAÇÃO E GAMIFICAÇÃO – PORTAL AUTO ARREMATE & ARREMAQ 
+
+
+
+ DIRETRIZ EXECUTIVA 
+
+
+
+ Assuma a função de Programador(a) Sênior, UX Designer Visionário e Líder de Arquitetura Web Corporativa. Sua missão é unificar todos os módulos estratégicos do Portal Auto Arremate & Arremaq em um único arquivo premium (HTML+CSS+JS), com governança de dados, acesso condicionado, gamificação, quizzes por módulo, barra de progresso dinâmica e geração de certificado no final da jornada. 
+
+
+
+ REGRAS E FLUXO DE INTEGRAÇÃO 
+
+
+
+ 1. ARQUIVO BASE E ORDEM: 
+
+    - Utilize MODULO 0 - CAPA E INDICE.html como núcleo da arquitetura. 
+
+    - Importe, na ordem exata abaixo, o conteúdo de todos os módulos, mantendo títulos, emojis e identidade visual: 
+
+      - 🚦 CENTRAL DE COMANDO AUTO ARREMATE & ARREMAQ 🛠️ 
+
+      - 🛠️ MANUAL DO PIT STOP: GUIA ESTRATÉGICO 
+
+      - 📜 NOSSA PISTA DE DECOLAGEM 
+
+      - 🚗 AUTO ARREMATE NA POLE POSITION 
+
+      - 🚜 ARREMAQ 
+
+      - 🎯 MAPEANDO OS CAMPEÕES 
+
+      - 📊 A JORNADA DO CLIENTE VENCEDOR 
+
+      - 🚀 ACELERAÇÃO TÁTICA TOTAL 
+
+      - ✍️ A ARTE DA COMUNICAÇÃO ESTRATÉGICA 
+
+      - 📖 DICIONÁRIO DOS MESTRES 
+
+      - 📈 EVOLUÇÃO CONTÍNUA 
+
+      - 📞 CENTRAL DE COMANDO 
+
+      - 🏆 DESAFIO DOS CAMPEÕES 
+
+      - 🏎️💨 GRANDE PRÊMIO AUTO ARREMATE 
+
+      - 🎨 BOX DA IDENTIDADE AUTO ARREMATE 
+
+      - ⛽ ACADEMIA DE REPASSADORES 3.0 
+
+
+
+ 2. LIBERAÇÃO DE ACESSO (INÍCIO DA TRILHA): 
+
+    - Antes de liberar qualquer módulo, exiba um modal obrigatório solicitando: 
+
+      - Nome completo 
+
+      - E-mail 
+
+      - Telefone 
+
+      - Cargo 
+
+      - Data de entrada 
+
+    - Não permita acesso à trilha sem o preenchimento e validação destes campos. 
+
+    - Estes dados deverão ser armazenados localmente (localStorage) e utilizados para customizar a experiência do usuário e gerar o certificado final. 
+
+
+
+ 3. MODULARIZAÇÃO E LAYOUT: 
+
+    - Cada módulo deve ser apresentado como um card/seção premium, com títulos, emojis e visual consistente. 
+
+    - Cards devem ter bordas arredondadas, microinterações e navegação fluida. 
+
+    - Não utilize listas padrão: sempre substitua bullets por emojis ou ícones. 
+
+
+
+ 4. QUIZ POR MÓDULO (GAMIFICAÇÃO): 
+
+    - Crie um quiz exclusivo de 10 perguntas para cada módulo. 
+
+      - Caso o módulo já possua quiz, utilize o original. 
+
+      - Caso não haja, crie perguntas novas com 4 alternativas e feedback imediato. 
+
+    - O quiz só ficará disponível ao final do conteúdo de cada módulo. 
+
+    - Usuário precisa obter nota mínima de 7 (70%) para avançar ao próximo módulo (pode tentar novamente quantas vezes quiser). 
+
+    - Registre o progresso do usuário (localStorage). 
+
+
+
+ 5. PROGRESSO E BLOQUEIO: 
+
+    - O usuário só terá acesso ao módulo seguinte após concluir o quiz do módulo atual. 
+
+    - **Implemente uma barra de progresso dinâmica e visual, fixa no topo da trilha, indicando visualmente a quantidade de módulos finalizados, o módulo atual e o progresso total (%).** 
+
+    - A barra deve ser responsiva, ter animação suave de preenchimento, mostrar o número do módulo atual e o total, e feedback visual ao concluir cada etapa. 
+
+
+
+ 6. CERTIFICADO DE CONCLUSÃO (FINAL DA TRILHA): 
+
+    - Ao final da trilha, após aprovação em todos os quizzes, exiba um modal premium de certificado de conclusão. 
+
+    - Preencha automaticamente os dados coletados no início da trilha (nome, email, telefone, cargo, data). 
+
+    - Certificado deve ter visual corporativo, animação de entrada e opção de download/print. 
+
+    - O certificado só deve ser liberado se todos os quizzes forem aprovados. 
+
+
+
+ 7. CSS & JS: 
+
+    - Consolide todos os estilos e scripts de todos os módulos, em um único <style> e <script>. 
+
+    - Resolva duplicidades e conflitos priorizando a identidade da CAPA E ÍNDICE. 
+
+    - Mantenha responsividade, UX premium, microinterações e performance. 
+
+
+
+ 8. INTEGRIDADE DO CONTEÚDO: 
+
+    - Não altere o conteúdo original dos módulos, exceto por correção ortográfica. 
+
+    - Não repita blocos, não omita e não resuma nada. 
+
+    - Siga à risca o índice e a ordem fornecida. 
+
+
+
+ OUTPUT ESPERADO 
+
+
+
+ - Um único arquivo HTML, responsivo, gamificado, seguro, com todos os conteúdos integrados, quizzes dinâmicos, bloqueio de progresso, barra de progresso visual e geração automática de certificado de conclusão no final. 
+
+
+
+ INSIGHT INOVADOR 
+
+
+
+ Implemente microinterações, animações e UX centrado no colaborador. Garanta que a trilha sirva não apenas para onboarding, mas também como ferramenta contínua de engajamento, desenvolvimento e reconhecimento do time. 
+
+
+
+ME FACA PERGINTAS PARA TER 100% DE CERTEZA DO QUE E PARA SER FEITO.
